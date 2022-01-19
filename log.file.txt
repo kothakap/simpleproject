@@ -1,0 +1,57 @@
+-------------AWS Console
+https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:
+-------------------------------------------------------------------------------------
+-------------
+    1  cd
+    2  apt-get update -y
+    3  apt install docker.io
+    4  docker --version
+    5  Docker version 20.10.7, build 20.10.7-0ubuntu5~20.04.2
+    6  systemctl start docker
+    7  systemctl status docker
+    8  docker ps
+    9  docker pull infracloudio/csvserver:latest
+   10 docker images
+   11  docker ps
+   12  docker pull prom/prometheus:v2.22.0
+   13  docker run -d --name=grafana -p 3000:3000 grafana/grafana
+   14  docker ps
+   15  docker images
+   16  docker run -itd --name prometheus -p 9090:9090 prom/prometheus
+   17  docker ps
+   18  https://grafana.com/auth/sign-in
+   19  http://3.87.240.73:9090/graph?g0.expr=&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h
+   20  docker ps 
+
+==================================================================================================================================
+
+    1  apt install docker-compose
+    2  docker ps
+    3  mkdir docker-compose
+    4  cd docker-compose
+    5  touch docker-compose.yaml
+    6  vi docker-compose.yaml
+
+version: "3"
+services:
+  grafana:
+    build:
+      context: ./grafana
+    container_name: grafana
+    ports:
+      - 9000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+volumes:
+  grafana-data:
+    external: true
+
+   7  docker-compose up -d
+   8  docker ps 
+   9  docker images
+  10  docker ps -a
+
+
+   
+
+
